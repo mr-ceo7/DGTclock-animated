@@ -1,0 +1,19 @@
+{
+  "name": "dgt-clock-dashboard",
+  "version": "1.0.0",
+  "description": "Web-based control dashboard for DGT LED Matrix Clock with HC-05 Bluetooth",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'No build step required - static site'",
+    "preview": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "bluetooth",
+    "arduino",
+    "dashboard",
+    "led-matrix",
+    "clock"
+  ],
+  "author": "mr-ceo7",
+  "license": "MIT"
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DGT Clock Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="title">🕐 DGT Clock Dashboard</h1>
+        <div class="connection-status">
+          <div class="status-indicator" id="statusIndicator"></div>
+          <span id="statusText">Disconnected</span>
+        </div>
+      </header>
+
+      <!-- Connection Panel -->
+      <section class="panel">
+        <h2 class="panel-title">Connection</h2>
+        <button id="connectBtn" class="btn btn-primary">
+          Connect to Clock
+        </button>
+        <p class="hint">
+          Make sure your HC-05 Bluetooth module is powered on and paired with
+          your device.
+        </p>
+      </section>
+
+      <!-- Time Sync Panel -->
+      <section class="panel">
+        <h2 class="panel-title">⏰ Time Synchronization</h2>
+        <div class="panel-content">
+          <div class="time-display" id="currentTime">--:--:--</div>
+          <button id="syncTimeBtn" class="btn btn-secondary">
+            Sync Time Now
+          </button>
+        </div>
+      </section>
+
+      <!-- Alarms Panel -->
+      <section class="panel">
+        <h2 class="panel-title">⏲️ Alarms</h2>
+        <div class="panel-content">
+          <div class="alarms-list" id="alarmsList">
+            <!-- Alarms will be rendered here -->
+          </div>
+          <button id="addAlarmBtn" class="btn btn-secondary">
+            + Add Alarm
+          </button>
+        </div>
+      </section>
+
+      <!-- Text Display Panel -->
+      <section class="panel">
+        <h2 class="panel-title">💬 Custom Text</h2>
+        <div class="panel-content">
+          <div class="input-group">
+            <input
+              type="text"
+              id="customTextInput"
+              class="input"
+              placeholder="Enter text to display"
+              maxlength="64"
+            />
+            <span class="char-count"><span id="charCount">0</span>/64</span>
+          </div>
+
+          <div class="mode-toggle">
+            <label class="toggle-label">
+              <input type="radio" name="textMode" value="scroll" checked />
+              <span>Scroll</span>
+            </label>
+            <label class="toggle-label">
+              <input type="radio" name="textMode" value="static" />
+              <span>Static</span>
+            </label>
+          </div>
+
+          <button id="sendTextBtn" class="btn btn-secondary">
+            Send to Display
+          </button>
+          <button id="showTimeBtn" class="btn btn-outline">Show Time</button>
+        </div>
+      </section>
+
+      <!-- Music Control Panel -->
+      <section class="panel">
+        <h2 class="panel-title">🎵 Music Control</h2>
+        <div class="panel-content">
+          <div class="input-group">
+            <select id="melodySelect" class="select">
+              <option value="0">Default Melody</option>
+              <option value="1">Happy Birthday</option>
+              <option value="2">Alarm Sound</option>
+              <option value="3">Notification</option>
+            </select>
+          </div>
+
+          <div class="btn-group">
+            <button id="playMusicBtn" class="btn btn-secondary">▶ Play</button>
+            <button id="stopMusicBtn" class="btn btn-outline">⏹ Stop</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brightness Control Panel -->
+      <section class="panel">
+        <h2 class="panel-title">💡 Brightness</h2>
+        <div class="panel-content">
+          <div class="slider-container">
+            <input
+              type="range"
+              id="brightnessSlider"
+              class="slider"
+              min="0"
+              max="15"
+              value="8"
+            />
+            <span class="slider-value" id="brightnessValue">8</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Made with ❤️ for your DGT Clock</p>
+      </footer>
+    </div>
+
+    <!-- Alarm Modal -->
+    <div id="alarmModal" class="modal">
+      <div class="modal-content">
+        <h3 class="modal-title">⏰ Set Alarm</h3>
+
+        <div class="input-group">
+          <label class="label">Time</label>
+          <div class="time-inputs">
+            <input
+              type="number"
+              id="alarmHour"
+              class="input time-input"
+              placeholder="HH"
+              min="0"
+              max="23"
+            />
+            <span class="time-separator">:</span>
+            <input
+              type="number"
+              id="alarmMinute"
+              class="input time-input"
+              placeholder="MM"
+              min="0"
+              max="59"
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="label">Melody</label>
+          <select id="alarmMelody" class="select">
+            <option value="0">Default Melody</option>
+            <option value="1">Happy Birthday</option>
+            <option value="2">Alarm Sound</option>
+            <option value="3">Notification</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button id="saveAlarmBtn" class="btn btn-primary">Save Alarm</button>
+          <button id="cancelAlarmBtn" class="btn btn-outline">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
